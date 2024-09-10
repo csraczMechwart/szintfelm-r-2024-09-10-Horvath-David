@@ -50,5 +50,9 @@ internal static class Program {
                     .Select(x =>
                         $"{x.Round}. forduló - győztes csapat: {(x.HomeGoals > x.GuestGoals ? x.HomeName : x.GuestName)}")
             ));
+        
+        Console.WriteLine("### Feladat 4 ###");
+        Console.Write("Írjon be egy csapatnevet: ");
+        var chosenTeam = Console.ReadLine();
     }
 }
