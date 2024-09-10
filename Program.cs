@@ -63,5 +63,11 @@ internal static class Program {
         goalsTaken += matches.Where(x => x.HomeName == chosenTeam).Select(x => x.GuestGoals).Sum();
         goalsTaken += matches.Where(x => x.GuestName == chosenTeam).Select(x => x.HomeGoals).Sum();
         Console.WriteLine($"lőtt: {goalsGave}, kapott: {goalsTaken}");
+
+        Console.WriteLine("### Feladat 6 ###");
+        var lostMatch = matches.FirstOrDefault(x => x.HomeName == chosenTeam && x.GuestGoals > x.HomeGoals);
+        Console.WriteLine(lostMatch != null
+            ? $"{lostMatch.Round} fordulóban kaptak ki otthon először."
+            : "A csapat otthon veretlen maradt.");
     }
 }
