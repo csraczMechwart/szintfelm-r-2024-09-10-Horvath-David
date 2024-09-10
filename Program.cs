@@ -50,9 +50,18 @@ internal static class Program {
                     .Select(x =>
                         $"{x.Round}. forduló - győztes csapat: {(x.HomeGoals > x.GuestGoals ? x.HomeName : x.GuestName)}")
             ));
-        
+
         Console.WriteLine("### Feladat 4 ###");
         Console.Write("Írjon be egy csapatnevet: ");
         var chosenTeam = Console.ReadLine();
+
+        Console.WriteLine("### Feladat 5 ###");
+        var goalsGave = 0;
+        var goalsTaken = 0;
+        goalsGave += matches.Where(x => x.HomeName == chosenTeam).Select(x => x.HomeGoals).Sum();
+        goalsGave += matches.Where(x => x.GuestName == chosenTeam).Select(x => x.GuestGoals).Sum();
+        goalsTaken += matches.Where(x => x.HomeName == chosenTeam).Select(x => x.GuestGoals).Sum();
+        goalsTaken += matches.Where(x => x.GuestName == chosenTeam).Select(x => x.HomeGoals).Sum();
+        Console.WriteLine($"lőtt: {goalsGave}, kapott: {goalsTaken}");
     }
 }
