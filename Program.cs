@@ -69,5 +69,16 @@ internal static class Program {
         Console.WriteLine(lostMatch != null
             ? $"{lostMatch.Round} fordulóban kaptak ki otthon először."
             : "A csapat otthon veretlen maradt.");
+        
+        Console.WriteLine("### Feladat 7 ###");
+        var results = new Dictionary<string, int>();
+        foreach (var match in matches) {
+            List<int> score = [match.HomeGoals, match.GuestGoals];
+            var key = String.Join("-", score.OrderDescending());
+            if (!results.TryAdd(key, 1)) {
+                results[key]++;
+            }
+        }
+        File.WriteAllLines("../../../stat.txt", results.Select(x => $"{x.Key}: {x.Value} darab").ToArray());
     }
 }
