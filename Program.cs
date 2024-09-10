@@ -16,7 +16,7 @@ internal static class Program {
 
 
     private static void Main(string[] args) {
-        Console.WriteLine("Feladat 1:");
+        Console.WriteLine("### Feladat 1 ###");
         var lines = File.ReadAllLines("../../../Feladat/meccs.txt");
         matchCount = Convert.ToInt32(lines.First());
         matches = lines.Skip(1).Select(line => line.Split(" ")).Select(segments => new Match() {
@@ -29,5 +29,16 @@ internal static class Program {
             GuestName = segments[6],
         }).ToArray();
         Console.WriteLine($"{matches.Length} meccs beolvasva");
+
+        Console.WriteLine("### Feladat 2 ###");
+        Console.Write("Írjon be egy fordulószámot: ");
+        var round = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine(
+            String.Join("\n",
+                matches
+                    .Where(x => x.Round == round)
+                    .Select(x =>
+                        $"{x.HomeName}-{x.GuestName}: {x.HomeGoals}-{x.GuestGoals} ({x.HalftimeHomeGoals}-{x.HalftimeGuestGoals})")
+            ));
     }
 }
