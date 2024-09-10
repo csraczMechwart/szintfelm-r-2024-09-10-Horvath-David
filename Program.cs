@@ -40,5 +40,15 @@ internal static class Program {
                     .Select(x =>
                         $"{x.HomeName}-{x.GuestName}: {x.HomeGoals}-{x.GuestGoals} ({x.HalftimeHomeGoals}-{x.HalftimeGuestGoals})")
             ));
+
+        Console.WriteLine("### Feladat 3 ###");
+        Console.WriteLine(
+            String.Join("\n",
+                matches
+                    .Where(x => (x.HalftimeHomeGoals > x.HalftimeGuestGoals && x.HomeGoals < x.GuestGoals) ||
+                                (x.HalftimeGuestGoals > x.HalftimeHomeGoals && x.GuestGoals < x.HomeGoals))
+                    .Select(x =>
+                        $"{x.Round}. forduló - győztes csapat: {(x.HomeGoals > x.GuestGoals ? x.HomeName : x.GuestName)}")
+            ));
     }
 }
